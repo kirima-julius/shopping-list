@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List Mananger</title>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <section id="section">
+            <div id="slmCard">
+                <form >
+                    <Label for="newItem" id="newitemLabel">New item:</Label>
+                    <input type="text" name="newItemInput" id="newItemInput">
+                    <button type="button" id="removeBtn"><i class="fa-solid fa-minus"></i></button>
+
+                    <button type="button" id="addBtn"><i class="fa-solid fa-plus"></i></button>
+
+                    <Label for="searchInput" id="searchLabel">Search item:</Label>
+                    <input type="text" name="searchInput" id="searchInput">
+                    
+
+                    <button type="button" id="searchBtn">Search</button>
+
+                    
+                </form>
+
+
+
+                <button id="countBtn">MY COUNT</button>
+                <p id="itemCounts"></p>
+
+                <div id="itemListContainer">
+                    <ul class="itemList">
+                        <li class="item"></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="shopping-list-manager.js"></script>
+</body>
+</html>
