@@ -11,6 +11,10 @@ const removeBtn = document.getElementById("removeBtn");
 const addBtn = document.getElementById("addBtn");
 const searchBtn = document.getElementById("searchBtn");
 const countBtn = document.getElementById("countBtn");
+const priorityBtn = document.getElementById("priorityBtn");
+
+
+const priorityListElement = document.getElementById("priorityList");
 
 const itemCounts = document.getElementById("itemCounts")
 
@@ -130,3 +134,30 @@ function countItems() {
 countBtn.addEventListener("click", () => {
     countItems()
 })
+
+
+function createPriorityList(){
+
+    const priorityList = shoppingList.slice(0,3);
+
+    console.log("Priority List:");
+
+    priorityList.forEach(function(item){
+
+        const li = document.createElement("li");
+
+        li.textContent = item;
+
+        priorityListElement.appendChild(li);
+
+    });
+
+}
+
+priorityBtn.addEventListener("click", function () {
+
+    createPriorityList();
+
+});
+
+
