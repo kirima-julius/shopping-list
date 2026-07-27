@@ -200,3 +200,14 @@ input[type="text"]{
 #priorityBtn:hover{
     background: #388E3C;
 }
+
+#clearPriorityBtn {
+    margin-left:10px;
+    padding: 10px 20px;
+    border: none;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
