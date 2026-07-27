@@ -15,6 +15,7 @@ const priorityBtn = document.getElementById("priorityBtn");
 
 
 const priorityListElement = document.getElementById("priorityList");
+const clearPriorityBtn = document.getElementById("clearPriorityBtn");
 
 const itemCounts = document.getElementById("itemCounts")
 
@@ -63,7 +64,8 @@ function addItem(item) {
 
     shoppingList.push(item)
     displayItems();
-    //countItems();
+    countItems();
+    createPriorityList();
 
     newItemInput.value = "";
 }
@@ -72,7 +74,7 @@ addBtn.addEventListener('click', () => {
     addItem(newItemInput.value.trim())
 });
 
-addItem();
+
 
 //REMOVING ITEM 
 
@@ -85,7 +87,8 @@ function removeItem(item) {
 
 
         displayItems();
-        //countItems();
+        countItems();
+        createPriorityList();
 
     }
 }
@@ -138,6 +141,8 @@ countBtn.addEventListener("click", () => {
 
 function createPriorityList(){
 
+    priorityListElement.innerHTML = "";
+
     const priorityList = shoppingList.slice(0,3);
 
     console.log("Priority List:");
@@ -157,6 +162,12 @@ function createPriorityList(){
 priorityBtn.addEventListener("click", function () {
 
     createPriorityList();
+
+});
+
+clearPriorityBtn.addEventListener("click", () => {
+
+    priorityListElement.innerHTML = "";
 
 });
 
