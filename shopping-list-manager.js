@@ -1,54 +1,48 @@
 //Initial shopping list
-let shoppingList  = ["Milk", "Bread" , "Eggs" , "Rice" , "Soap"]
+let shoppingList = ["Milk", "Bread", "Eggs", "Rice", "Soap"]
 
 //Dom Element
-
 
 const newItemInput = document.getElementById("newItemInput");
 const searchInput = document.getElementById("searchInput");
 
-const removeBtn = document.getElementById("removeBtn");
 const addBtn = document.getElementById("addBtn");
 const searchBtn = document.getElementById("searchBtn");
 const countBtn = document.getElementById("countBtn");
 const priorityBtn = document.getElementById("priorityBtn");
 
-
 const priorityListElement = document.getElementById("priorityList");
 const clearPriorityBtn = document.getElementById("clearPriorityBtn");
 
-const itemCounts = document.getElementById("itemCounts")
-
-const itemListContainer = document.getElementById("itemListContainer")
+const itemCounts = document.getElementById("itemCounts");
 
 const itemList = document.querySelector(".itemList");
 
-//Task one   
+//Task one
 
-//Display all initial items 
+//Display all initial items
 
 function displayItems() {
     itemList.innerHTML = "";
-    
-    shoppingList.forEach( (item) => {
+
+    shoppingList.forEach((item) => {
+
         const li = document.createElement("li");
         li.className = "item";
-        li.textContent = item
-        itemList.appendChild(li)
-
+        li.textContent = item;
 
         const removeBtn1 = document.createElement("button");
-        removeBtn1.innerHTML = "<i class='fa-solid fa-times'></i>"
-        removeBtn1.className = "removeBtn1"
+        removeBtn1.innerHTML = "<i class='fa-solid fa-times'></i>";
+        removeBtn1.className = "removeBtn1";
 
-        
-        removeBtn1.addEventListener("click" , () => {
-            removeItem(item)
-        })
-        
+        removeBtn1.addEventListener("click", () => {
+            removeItem(item);
+        });
 
-        
-        li.appendChild(removeBtn1)
+        li.appendChild(removeBtn1);
+
+        itemList.appendChild(li);
+
     });
 }
 
@@ -57,97 +51,127 @@ displayItems();
 //ADDING ITEM
 
 function addItem(item) {
+
     if (item === "") {
-        alert("Item cant be empty")
+        alert("Item can't be empty");
         return;
     }
 
-    shoppingList.push(item)
+    shoppingList.push(item);
+
     displayItems();
     countItems();
     createPriorityList();
 
     newItemInput.value = "";
+
 }
 
-addBtn.addEventListener('click', () => {
-    addItem(newItemInput.value.trim())
+addBtn.addEventListener("click", () => {
+
+    addItem(newItemInput.value.trim());
+
 });
 
-
-
-//REMOVING ITEM 
+//REMOVING ITEM
 
 function removeItem(item) {
 
     let index = shoppingList.indexOf(item);
 
     if (index !== -1) {
-        shoppingList.splice(index, 1);
 
+        shoppingList.splice(index, 1);
 
         displayItems();
         countItems();
         createPriorityList();
 
     }
+
 }
 
-removeBtn.addEventListener("click", () => {
-    removeItem(searchInput.value.trim());
-});
-
-
-
+//SEARCH ITEM
 
 function searchItem(item) {
+
     if (item === "") {
+        displayItems();
         return;
     }
 
-    if (shoppingList.includes(item)) {
-        itemList.innerHTML = "";
+    itemList.innerHTML = "";
 
-        const li = document.createElement("li");
+    let found = false;
 
-        li.textContent = item
+    shoppingList.forEach((currentItem) => {
 
-        itemList.appendChild(li)
-    }else {
-        alert(item + " Item not found!")
+        if (currentItem.toLowerCase().includes(item.toLowerCase())) {
+
+            found = true;
+
+            const li = document.createElement("li");
+            li.className = "item";
+            li.textContent = currentItem;
+
+            const removeBtn1 = document.createElement("button");
+            removeBtn1.innerHTML = "<i class='fa-solid fa-times'></i>";
+            removeBtn1.className = "removeBtn1";
+
+            removeBtn1.addEventListener("click", () => {
+                removeItem(currentItem);
+            });
+
+            li.appendChild(removeBtn1);
+
+            itemList.appendChild(li);
+
+        }
+
+    });
+
+    if (!found) {
+
+        alert(item + " Item not found!");
+        displayItems();
+
     }
+
 }
 
-searchBtn.addEventListener("click" , () => {
+searchBtn.addEventListener("click", () => {
+
     const item = searchInput.value.trim();
 
-    searchItem(item)
-})
+    searchItem(item);
 
-
+});
 
 //COUNT ITEMS
 
 function countItems() {
-    const totalItems = shoppingList.length
-    itemCounts.textContent = `Total items: ${totalItems}`
-    
+
+    const totalItems = shoppingList.length;
+
+    itemCounts.textContent = `Total items: ${totalItems}`;
+
 }
 
 countBtn.addEventListener("click", () => {
-    countItems()
-})
 
+    countItems();
 
-function createPriorityList(){
+});
+
+//PRIORITY LIST
+
+function createPriorityList() {
 
     priorityListElement.innerHTML = "";
 
-    const priorityList = shoppingList.slice(0,3);
+    const priorityList = shoppingList.slice(0, 3);
 
-    console.log("Priority List:");
-
-    priorityList.forEach(function(item){
+    priorityList.forEach((item) => {
 
         const li = document.createElement("li");
 
@@ -159,11 +183,13 @@ function createPriorityList(){
 
 }
 
-priorityBtn.addEventListener("click", function () {
+priorityBtn.addEventListener("click", () => {
 
     createPriorityList();
 
 });
+
+//CLEAR PRIORITY LIST
 
 clearPriorityBtn.addEventListener("click", () => {
 
@@ -171,4 +197,4 @@ clearPriorityBtn.addEventListener("click", () => {
 
 });
 
-
+countItems();
